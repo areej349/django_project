@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>اسم المنتج</th>
+            <th> السعر</th>
+            <th>الصورة</th>
+            <th>الفئة</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for item in api_data %}
+
+<tr>
+    <td> {{item.title}} </td>
+      <td>{{item.price}}</td>  
+       <td><img src="{{item.image}}" width="60" height="60"/></td> 
+       <td>{{item.category}}</td>  
+
+</tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

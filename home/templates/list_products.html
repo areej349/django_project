@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1>قائمة المنتجات</h1>
+    <div class="row">
+        {% for item in product %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                {% if item.image %} 
+                <img src="{{ item.image.url }}" class="card-img-top" alt="{{item.name}}" style="height: 200px; width:397px; object-fit: cover;">
+                {% else  %}
+                <img src="https://img.freepik.com/free-vector/error-alert-button-symbol_24877-83749.jpg?ga=GA1.1.611550933.1743974737&semt=ais_hybrid&w=740" alt="{{item.name}}" style="height: 200px; object-fit: cover;">  #لو مافيه صورة احط صورة تعبيرية
+                {% endif %} 
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <h6 class="badge bg-danger">{{item.qty}} الكمية المتبقية !  </h6>
+
+
+                </div> 
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <p>{{item.price}} ريــال</p>
+
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'details' id=item.id %}" class="btn btn-info">التفاصيل </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        {% endfor%}
+    </div>
+</div>
+{% endblock %}

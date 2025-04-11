@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Almarai' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <title>مشروع عالم التسوق</title>
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    
+
+<style>
+    *{
+      font-family: 'Almarai';
+    }
+    body{
+      height: 100vh;
+    }
+    a {
+          color: black; /* اللون الذي تريده، مثل الأسود */
+          text-decoration: none; /* اختياري: لإزالة الخط السفلي */
+      }
+
+      .product-img {
+          max-height: 400px;
+          object-fit: cover;
+      }
+      .product-card {
+          border: none;
+          border-radius: 15px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .cart-icon {
+          position: relative;
+      }
+      .cart-count {
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          background-color: #dc3545;
+          color: white;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+      }
+      
+    .footer {
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      white-space: nowrap;
+      line-height: 60px;
+    }
+    a{
+      text-decoration: none;
+      color:white;
+      font-size: 18px;
+      
+      
+    }
+  </style>
+
+</head>
+
+<body dir="rtl">
+    <header>
+<nav class="navbar" style="background-color: rgb(133, 99, 165);">
+    <div class="container-fluid">
+        <ul class="list-inline">
+            <li class="list-inline-item p-1"> <span><a href="{% url 'index' %}">الرئيسية</a>   </span></li>
+           <!---- <li class="list-inline-item p-1"> <span><a href="#">من نحن  </a></span></li> -->
+            <li class="list-inline-item p-1"> <span><a href="#contact-numbers">اتصل بنا</a></span></li>
+           <!--- <li class="list-inline-item p-1"> <span><a href="{% url 'showphone' phone='iphone16 pro' %}">الهواتف   </a>  </span></li> -->
+           <!--- <li class="list-inline-item p-1"> <span><a href="{% url 'categories' %}">الفئات    </a>  </span></li> -->
+<nav>
+  <!-- البحث -->
+  <form method="GET" action="{% url 'search' %}">
+      <input type="text" name="query" placeholder="ابحث عن المنتجات..." value="{{ request.GET.query }}">
+      <button type="submit">بحث</button>
+  </form>
+</nav>
+<span class="store-name" style="position: absolute; left: 50%; top: 10px; transform: translateX(-50%); font-size: 36px; font-weight: bold; color: white; letter-spacing: 2px; text-transform: uppercase;">عالم التسوق</span>
+
+
+        </ul>
+     <div>
+
+      <!----  <div class="d-flex justify-content-end">
+          <ul class="list-inline">
+            {% if user.is_authenticted %}
+            <i class="list-inline-item text-white p-1">اهلا :{{user.user}}</i>
+            <i class="list-inline-item text-white p-1">تسجيل خروج</i>
+            {% else %}
+            <i class="list-inline-item text-white  p-1"><small>تسجيل الدخول</small>  </i>
+            <i class="list-inline-item text-white p-1"> <small>تسجيل جديد</i>
+
+            {% endif %}
+            <i class="list-inline-item p-1">
+              <a href="#" class="btn btn-outline-primary position-relative cart-icon">
+                <i class="bi bi-cart3 fs-5 "></i>
+                    <span class="cart-count">{{cart_count}}</span>
+            </a>
+            </i>
+
+          </ul>
+            
+
+        </div>
+      -->
+      
+        <div class="py-2">
+          <div class="container">
+            <div class="d-flex justify-content-start"> 
+              <ul class="list-inline mb-0">
+        
+                {% if user.is_authenticated %}
+                  <li class="list-inline-item text-white px-2"> <i class="bi bi-person"></i> :{{ user.username }}</li>
+                  <li class="list-inline-item px-2">
+                    <a href="{#}" class="text-white text-decoration-none"> <a href="{% url 'logout' %}"> <i class="bi bi-box-arrow-right"></i></a>
+                  </li>
+                {% else %}
+                  <li class="list-inline-item px-2">
+                    <a href="{% url 'login' %}" class="text-white text-decoration-none"><small>تسجيل الدخول</small></a>
+                  </li>
+                  <li class="list-inline-item px-2">
+                    <a href="{% url 'register' %}" class="text-white text-decoration-none"><small>تسجيل جديد</small></a>
+                  </li>
+                {% endif %}
+        
+                <li class="list-inline-item px-2">
+                  <a href="#" class="btn btn-outline-primary position-relative cart-icon">
+                    <i class="bi bi-cart3 fs-5"></i>
+                    <span class="cart-count position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {{ cart_count }}
+                    </span>
+                  </a>
+                </li>
+        
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+
+
+     </div>   
+    </div>
+</nav>
+
+
+
+    </header>
+
+    <main>
+<div class="container">
+<div class="row">
+<div class ='col'>
+    {% block content %}
+ {% endblock %}
+</div>
+</div>
+</div>
+    </main>
+
+     
+    <footer class="bg-body-tertiary text-center text-lg-start footer mt-5">
+      <!-- قسم الأرقام للتواصل -->
+      <div id="contact-numbers" class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+          <h5>أرقام التواصل</h5>
+          <p> الهاتف: +123456789</p>
+          <p> البريد الإلكتروني: shoppingWorld@gmail.com</p>
+          <p> WhatsApp: +9665654321</p>
+      </div>
+      
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+          © 2025 Copyright:
+          <a class="text-body" href="https://mdbootstrap.com/">Tuwaiq.com</a>
+      </div>
+      
+  </footer>
+  
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

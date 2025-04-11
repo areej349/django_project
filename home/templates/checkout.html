@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" action="{% url 'process_payment' %}">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header text-white text-center" style="background-color: rgb(95, 87, 101); color: white;">
+                        <h4 class="mb-0">صفحة اتمام الدفع</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <label for="fullname" class="form-control bg-light">الاسم بالكامل</label>
+                            <input type="text" class="form-control" id="fullname" name="fullname" placeholder=" الاسم بالكامل ">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-control bg-light">البريد الالكتروني</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder=" البريد الالكتروني ">
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="cardnumber" class="form-control bg-light">رقم البطاقة</label>
+                                    <input type="text" class="form-control" id="cardnumber" name="cardnumber" placeholder=" رقم البطاقة ">
+                                </div>
+                                <div class="col">
+                                    <label for="cvv" class="form-control bg-light">CVV</label>
+                                    <input type="text" class="form-control" id="cvv" name="cvv" placeholder=" CVV ">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-control bg-light">تاريخ الانتهاء</label>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="exp_month" placeholder=" شهر ">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="exp_year" placeholder=" سنة ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-primary" type="submit" style="background-color: rgb(95, 87, 101);    border: 1px solid rgb(90, 82, 97); ">تأكيد الدفع</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

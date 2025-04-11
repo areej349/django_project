@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row mt-5 my-5">
+        <div class="col-sm-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{products.image.url}}"alt="" class="img-fluid product-img rounded" height="600">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div class="card product-card p-4 mt-3">
+                <h2 class="card-title">اسم المنتج :{{products.name}}</h2>
+                <p class="text-muted">اسم الفئة:{{products.categories.name}}</p>
+            </div>
+            <div class="mb-3 mt-3">
+                <span class="h4 text-success fw-bold">{{products.price}}  ريال</span>
+
+            </div>
+            <div class="card-text">
+وصف المنتج او الملاحظات :
+            </div>
+            <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item">الكمية المتبقية : {{products.qty}}</li>
+                <li class="list-group-item">الشحن مجاني </li>
+                <li class="list-group-item">ضمان لمدة سنة</li>
+            </ul>
+            <button class="btn btn-primary btn-lg" onclick="addcart()">اضف الى السلة</button>
+            <a href="{% url 'checkout' %}" class="btn btn-danger btn-lg">مواصلة الشراء</a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

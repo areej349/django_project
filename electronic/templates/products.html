@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+{%for item in prod%}  {# اسوي فور لوب واقرا البيانات من المفتاح prod #} 
+<p>{{item.id}}</p>  {# اقرا لي item.id #}
+<p>{{item.name}}</p>
+<p>{{item.price}}</p>
+<p>{{item.color}}</p>
+
+{% endfor %}
+{% endblock %}

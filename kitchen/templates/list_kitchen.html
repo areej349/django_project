@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1 style="color:rgb(83, 33, 130);">قائمة أدوات المطبخ</h1>
+        <small>استمتع باكتشاف أفضل أدوات المطبخ لدينا مع خصومات مذهلة!</small>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col">
+        {% for item in kitchen_products %}
+        <div class="row mt-2">
+            <div class="col d-flex justify-content-center">
+                <div class="card" style="width: 700px;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col col-sm-3 col-md-3">
+                                <h6 class="badge bg-danger">{{ item.price }} ريال</h6>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <a href="{% url 'show_kitchen' item.id %}" class="btn btn-success">تفاصيل المنتج</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col col-sm-7 col-md-7">
+                                <ul class="list-unstyled">
+                                    <li class="p-1">
+                                        <h6 class="text-start pt-4">{{ item.name }}</h6>
+                                    </li>
+                                    <li class="p-1">
+                                        <h6 class="text-start" style="font-size: 12px;">{{ item.description }}</h6>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-sm-2 col-md-2 d-flex justify-content-end">
+                                <img src="{{ item.image }}" width="100" height="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

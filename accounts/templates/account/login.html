@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--<h2>تسجيل الدخول</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">دخول</button>
+    <span>ليس لديك حساب؟ <a href="{% url 'register' %}" class="text-primary">إنشاء حساب</a></span>
+
+</form>
+-->
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">تسجيل الدخول</h3>
+
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="form-text text-danger">
+                                        {{ field.errors|striptags }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+                            <span>ليس لديك حساب؟ <a href="{% url 'register' %}" class="text-primary">إنشاء حساب</a></span>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

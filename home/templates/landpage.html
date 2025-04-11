@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+<!---
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col">
+<h1 style="color:rgb(83, 33, 130);">أهلا بكم في متجر عالم التسوق </h1>
+<small>يوفر لكم متجر عالم التسوق اهم الفئات التي يحتاجها المستهلك حيث يمكنك تصفح افضل المنتجات لكل فئة</small>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mt-5">  {#عشان نقرا مباشرة من الداتا بيس مو بطريقة static#}
+        {% for item in categories %}
+        <div class="col-6 mb-3">
+            <a href="{% url 'list_product' id=item.id %}">
+                <div class="card" style="width:500px;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title">{{item.name}}</h5>
+    
+                            </div>
+                            <div class="col">
+                                <i class="{{item.icon}}" arial-hidden="True" style="font-size:70px"></i>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </a>
+          
+
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+-->
+
+
+
+<div class="row d-flex justify-content-center mt-5">
+    {% for item in categories %}
+    <div class="col-lg-3 col-md-4 col-6 mb-3">
+        <a href="{% url 'list_product' id=item.id %}">
+            <div class="card category-card">
+                <div class="card-body text-center">
+                    <div class="category-icon">
+                        <i class="{{item.icon}}" aria-hidden="true"></i>
+                    </div>
+                    <h5 class="card-title">{{ item.name }}</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    /* تنسيق البطاقة */
+    .category-card {
+        border: 1px solid #ddd; /* حدود رقيقة */
+        border-radius: 10px; /* زوايا دائرية */
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* تأثير التوسع */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* إضافة الظلال */
+    }
+
+    /* تأثيرات عند التمرير */
+    .category-card:hover {
+        transform: translateY(-10px); /* رفع البطاقة قليلاً عند التمرير */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* تعميق الظلال عند التمرير */
+    }
+
+    /* تنسيق الأيقونات */
+    .category-icon {
+        font-size: 60px; /* حجم الأيقونة */
+        color: #5b2b82; /* اختيار لون الأيقونات */
+        margin-bottom: 15px; /* مسافة بين الأيقونة والعنوان */
+        transition: color 0.3s ease; /* تأثير التغيير في اللون */
+    }
+
+    .category-card:hover .category-icon {
+        color: #f39c12; /* تغيير اللون عند التمرير */
+    }
+
+    /* تنسيق العنوان */
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333; /* لون العنوان */
+        margin-top: 10px; /* مسافة بين الأيقونة والعنوان */
+        text-transform: uppercase; /* تحويل النص إلى حروف كبيرة */
+    }
+
+    /* تنسيق البطاقات على الشاشات الصغيرة */
+    @media (max-width: 768px) {
+        .category-card {
+            width: 100%; /* جعل البطاقة تأخذ كامل عرض المساحة */
+        }
+    }
+
+    /* تحسين محاذاة العناصر داخل البطاقات */
+    .category-card .card-body {
+        padding: 30px 20px; /* إضافة بعض الحشو حول المحتوى داخل البطاقة */
+    }
+</style>
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h3>فاتورة الدفع</h3>
+    <p><strong>الاسم:</strong> {{ fullname }}</p>
+    <p><strong>البريد:</strong> {{ email }}</p>
+    <p><strong>رقم البطاقة:</strong> {{ cardnumber }}</p>
+    <p><strong>تاريخ الانتهاء:</strong> {{ exp_month }}/{{ exp_year }}</p>
+</div>
+{% endblock %}
