@@ -1,0 +1,31 @@
+# بيئة بايثون
+__pycache__/
+*.py[cod]
+*.env
+
+# ملفات البيئة الافتراضية
+venv/
+env/
+
+# قاعدة البيانات (MySQL عادة ما تكون خارج المشروع، لكن احتياط)
+*.sql
+*.db
+
+# ملفات Django المؤقتة
+db.sqlite3
+*.log
+
+# ملفات إعدادات حساسة
+.env
+
+# مجلدات Static و Media
+/static/
+/media/
+
+# ملفات النظام
+.DS_Store
+Thumbs.db
+
+# ملفات IDE (اختياري لو تستخدم VSCode مثلاً)
+.vscode/
+.idea/
