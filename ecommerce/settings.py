@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'ecommerce' , 
-        'USER' : 'root',
-        'PASSWORD': '123456',
+        'NAME' : '' , 
+        'USER' : '',
+        'PASSWORD': '',
         'HOST' : 'localhost',
-        'PORT' : '3306' ,
+        'PORT' : '' ,
     }
 }
 
